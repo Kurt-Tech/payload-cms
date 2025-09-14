@@ -1,5 +1,6 @@
 import React from 'react'
 import './styles.css'
+import ApolloProvider from '@/components/providers/ApolloProvider'
 
 export const metadata = {
   description: 'A blank template using Payload in a Next.js app.',
@@ -12,7 +13,9 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body>
-        <main>{children}</main>
+        <ApolloProvider>
+          <main>{children}</main>
+        </ApolloProvider>
       </body>
     </html>
   )
