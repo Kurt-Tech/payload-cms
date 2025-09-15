@@ -1,7 +1,6 @@
 // storage-adapter-import-placeholder
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
 import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
-import { livePreview } from '@payloadcms/plugin-live-preview'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'path'
 import { buildConfig } from 'payload'
@@ -55,20 +54,5 @@ export default buildConfig({
     },
   }),
   sharp,
-  plugins: [
-    payloadCloudPlugin(),
-    livePreview({
-      collections: ['pages'],
-      resolveURL: ({ data }) => {
-        const base = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3001'
-        const slug = (data as any)?.slug || 'home'
-        return new URL(`/api/preview?slug=${slug}`, base).toString()
-      },
-      breakpoints: [
-        { label: 'Desktop', width: 1280 },
-        { label: 'Tablet', width: 834 },
-        { label: 'Mobile', width: 390 },
-      ],
-    }),
-  ],
+  plugins: [payloadCloudPlugin()],
 })
