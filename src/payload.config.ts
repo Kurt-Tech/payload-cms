@@ -32,11 +32,13 @@ export default buildConfig({
     process.env.PAYLOAD_PUBLIC_SERVER_URL || '',
     'http://localhost:3000',
     'https://*.vercel.app',
+    'https://www.apexmedical.lc',
   ].filter(Boolean),
   cors: [
     process.env.PAYLOAD_PUBLIC_SERVER_URL || '',
     'http://localhost:3000',
     'https://*.vercel.app',
+    'https://www.apexmedical.lc',
   ].filter(Boolean),
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
