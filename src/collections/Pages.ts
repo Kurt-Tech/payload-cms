@@ -7,6 +7,7 @@ const HeroBlock: Block = {
     { name: 'subheading', type: 'text' },
     { name: 'ctaText', type: 'text' },
     { name: 'ctaLink', type: 'text' },
+    { name: 'image', type: 'upload', relationTo: 'media' },
   ],
 }
 
@@ -21,6 +22,7 @@ const FeaturesBlock: Block = {
       fields: [
         { name: 'title', type: 'text', required: true },
         { name: 'description', type: 'text' },
+        { name: 'image', type: 'upload', relationTo: 'media' },
       ],
     },
   ],
@@ -37,6 +39,33 @@ const TestimonialsBlock: Block = {
       fields: [
         { name: 'name', type: 'text', required: true },
         { name: 'quote', type: 'textarea', required: true },
+        { name: 'avatar', type: 'upload', relationTo: 'media' },
+      ],
+    },
+  ],
+}
+
+const CalloutBlock: Block = {
+  slug: 'callout',
+  fields: [
+    { name: 'heading', type: 'text', required: true },
+    { name: 'content', type: 'textarea' },
+    { name: 'ctaText', type: 'text' },
+    { name: 'ctaLink', type: 'text' },
+    { name: 'image', type: 'upload', relationTo: 'media' },
+  ],
+}
+
+const FAQBlock: Block = {
+  slug: 'faq',
+  fields: [
+    { name: 'heading', type: 'text' },
+    {
+      name: 'items',
+      type: 'array',
+      fields: [
+        { name: 'question', type: 'text', required: true },
+        { name: 'answer', type: 'textarea', required: true },
       ],
     },
   ],
@@ -47,6 +76,11 @@ export const Pages: CollectionConfig = {
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'slug', 'updatedAt'],
+    preview: (doc) => {
+      const base = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3001'
+      const slug = (doc as any)?.slug || 'home'
+      return `${base}/api/preview?slug=${slug}`
+    },
   },
   access: {
     read: () => true,
@@ -64,8 +98,7 @@ export const Pages: CollectionConfig = {
       name: 'layout',
       type: 'blocks',
       required: true,
-      blocks: [HeroBlock, FeaturesBlock, TestimonialsBlock],
+      blocks: [HeroBlock, FeaturesBlock, TestimonialsBlock, CalloutBlock, FAQBlock],
     },
   ],
 }
-

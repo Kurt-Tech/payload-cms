@@ -86,8 +86,16 @@ export interface Config {
   db: {
     defaultIDType: string;
   };
-  globals: {};
-  globalsSelect: {};
+  globals: {
+    header: Header;
+    footer: Footer;
+    theme: Theme;
+  };
+  globalsSelect: {
+    header: HeaderSelect<false> | HeaderSelect<true>;
+    footer: FooterSelect<false> | FooterSelect<true>;
+    theme: ThemeSelect<false> | ThemeSelect<true>;
+  };
   locale: null;
   user: User & {
     collection: 'users';
@@ -172,6 +180,7 @@ export interface Page {
         subheading?: string | null;
         ctaText?: string | null;
         ctaLink?: string | null;
+        image?: (string | null) | Media;
         id?: string | null;
         blockName?: string | null;
         blockType: 'hero';
@@ -181,6 +190,7 @@ export interface Page {
         items: {
           title: string;
           description?: string | null;
+          image?: (string | null) | Media;
           id?: string | null;
         }[];
         id?: string | null;
@@ -192,11 +202,35 @@ export interface Page {
         quotes: {
           name: string;
           quote: string;
+          avatar?: (string | null) | Media;
           id?: string | null;
         }[];
         id?: string | null;
         blockName?: string | null;
         blockType: 'testimonials';
+      }
+    | {
+        heading: string;
+        content?: string | null;
+        ctaText?: string | null;
+        ctaLink?: string | null;
+        image?: (string | null) | Media;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'callout';
+      }
+    | {
+        heading?: string | null;
+        items?:
+          | {
+              question: string;
+              answer: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'faq';
       }
   )[];
   updatedAt: string;
@@ -320,6 +354,7 @@ export interface PagesSelect<T extends boolean = true> {
               subheading?: T;
               ctaText?: T;
               ctaLink?: T;
+              image?: T;
               id?: T;
               blockName?: T;
             };
@@ -332,6 +367,7 @@ export interface PagesSelect<T extends boolean = true> {
                 | {
                     title?: T;
                     description?: T;
+                    image?: T;
                     id?: T;
                   };
               id?: T;
@@ -346,6 +382,32 @@ export interface PagesSelect<T extends boolean = true> {
                 | {
                     name?: T;
                     quote?: T;
+                    avatar?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        callout?:
+          | T
+          | {
+              heading?: T;
+              content?: T;
+              ctaText?: T;
+              ctaLink?: T;
+              image?: T;
+              id?: T;
+              blockName?: T;
+            };
+        faq?:
+          | T
+          | {
+              heading?: T;
+              items?:
+                | T
+                | {
+                    question?: T;
+                    answer?: T;
                     id?: T;
                   };
               id?: T;
@@ -386,6 +448,108 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "header".
+ */
+export interface Header {
+  id: string;
+  logo?: (string | null) | Media;
+  navLinks?:
+    | {
+        label: string;
+        href: string;
+        external?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "footer".
+ */
+export interface Footer {
+  id: string;
+  links?:
+    | {
+        label: string;
+        href: string;
+        external?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
+  copyright?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "theme".
+ */
+export interface Theme {
+  id: string;
+  brand?: {
+    primaryHex?: string | null;
+    accentHex?: string | null;
+  };
+  radius?: ('none' | 'sm' | 'md' | 'lg') | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "header_select".
+ */
+export interface HeaderSelect<T extends boolean = true> {
+  logo?: T;
+  navLinks?:
+    | T
+    | {
+        label?: T;
+        href?: T;
+        external?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "footer_select".
+ */
+export interface FooterSelect<T extends boolean = true> {
+  links?:
+    | T
+    | {
+        label?: T;
+        href?: T;
+        external?: T;
+        id?: T;
+      };
+  copyright?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "theme_select".
+ */
+export interface ThemeSelect<T extends boolean = true> {
+  brand?:
+    | T
+    | {
+        primaryHex?: T;
+        accentHex?: T;
+      };
+  radius?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
