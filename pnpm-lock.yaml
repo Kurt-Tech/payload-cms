@@ -26,6 +26,9 @@ importers:
       '@payloadcms/richtext-lexical':
         specifier: 3.55.1
         version: 3.55.1(@faceless-ui/modal@3.0.0-beta.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@faceless-ui/scroll-info@2.0.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@payloadcms/next@3.55.1(@types/react@19.1.8)(graphql@16.11.0)(monaco-editor@0.53.0)(next@15.4.4(@babel/core@7.28.4)(@playwright/test@1.54.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.77.4))(payload@3.55.1(graphql@16.11.0)(typescript@5.7.3))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.7.3))(@types/react@19.1.8)(monaco-editor@0.53.0)(next@15.4.4(@babel/core@7.28.4)(@playwright/test@1.54.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.77.4))(payload@3.55.1(graphql@16.11.0)(typescript@5.7.3))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.7.3)(yjs@13.6.27)
+      '@payloadcms/storage-vercel-blob':
+        specifier: ^3.55.1
+        version: 3.55.1(@types/react@19.1.8)(monaco-editor@0.53.0)(next@15.4.4(@babel/core@7.28.4)(@playwright/test@1.54.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.77.4))(payload@3.55.1(graphql@16.11.0)(typescript@5.7.3))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.7.3)
       '@payloadcms/ui':
         specifier: 3.55.1
         version: 3.55.1(@types/react@19.1.8)(monaco-editor@0.53.0)(next@15.4.4(@babel/core@7.28.4)(@playwright/test@1.54.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.77.4))(payload@3.55.1(graphql@16.11.0)(typescript@5.7.3))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.7.3)
@@ -1379,6 +1382,12 @@ packages:
       react: ^19.0.0 || ^19.0.0-rc-65a56d0e-20241020
       react-dom: ^19.0.0 || ^19.0.0-rc-65a56d0e-20241020
 
+  '@payloadcms/storage-vercel-blob@3.55.1':
+    resolution: {integrity: sha512-sOYZS83H7VgwNPyta2ffcISW/URLgwHH8cxE5wL1DyvU7HJySS1qRam2n//Keopzpjwf69Ji0Ucg2e6e0W1Jwg==}
+    engines: {node: ^18.20.2 || >=20.9.0}
+    peerDependencies:
+      payload: 3.55.1
+
   '@payloadcms/translations@3.55.1':
     resolution: {integrity: sha512-iYb0qrx2FNgy3oApsyLJQYzSxip29wPWE+SnN6sW/rllKU8SwFuwOCp/xu994rS3jcBpYQ0Y0EAJ4BqdvJ0dnA==}
 
@@ -1997,6 +2006,10 @@ packages:
     resolution: {integrity: sha512-lrW200hZdbfRtztbygyaq/6jP6AKE8qQN2KvPcJ+x7wiD038YtnYtZ82IMNJ69GJibV7bwL3y9FgK+5w/pYt6g==}
     cpu: [x64]
     os: [win32]
+
+  '@vercel/blob@0.22.3':
+    resolution: {integrity: sha512-l0t2KhbOO/I8ZNOl9zypYf1NE0837aO4/CPQNGR/RAxtj8FpdYKjhyUADUXj2gERLQmnhun+teaVs/G7vZJ/TQ==}
+    engines: {node: '>=16.14'}
 
   '@vercel/blob@0.23.4':
     resolution: {integrity: sha512-cOU2e01RWZXFyc/OVRq+zZg38m34bcxpQk5insKp3Td9akNWThrXiF2URFHpRlm4fbaQ/l7pPSOB5nkLq+t6pw==}
@@ -6126,6 +6139,20 @@ snapshots:
       - typescript
       - yjs
 
+  '@payloadcms/storage-vercel-blob@3.55.1(@types/react@19.1.8)(monaco-editor@0.53.0)(next@15.4.4(@babel/core@7.28.4)(@playwright/test@1.54.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.77.4))(payload@3.55.1(graphql@16.11.0)(typescript@5.7.3))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.7.3)':
+    dependencies:
+      '@payloadcms/plugin-cloud-storage': 3.55.1(@types/react@19.1.8)(monaco-editor@0.53.0)(next@15.4.4(@babel/core@7.28.4)(@playwright/test@1.54.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.77.4))(payload@3.55.1(graphql@16.11.0)(typescript@5.7.3))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.7.3)
+      '@vercel/blob': 0.22.3
+      payload: 3.55.1(graphql@16.11.0)(typescript@5.7.3)
+    transitivePeerDependencies:
+      - '@types/react'
+      - monaco-editor
+      - next
+      - react
+      - react-dom
+      - supports-color
+      - typescript
+
   '@payloadcms/translations@3.55.1':
     dependencies:
       date-fns: 4.1.0
@@ -6854,6 +6881,13 @@ snapshots:
 
   '@unrs/resolver-binding-win32-x64-msvc@1.11.1':
     optional: true
+
+  '@vercel/blob@0.22.3':
+    dependencies:
+      async-retry: 1.3.3
+      bytes: 3.1.2
+      is-buffer: 2.0.5
+      undici: 5.29.0
 
   '@vercel/blob@0.23.4':
     dependencies:
