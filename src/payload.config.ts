@@ -1,6 +1,8 @@
 // storage-adapter-import-placeholder
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
 import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
+import { cloudStorage } from '@payloadcms/plugin-cloud-storage'
+import { vercelBlobAdapter } from './storage/vercelBlobAdapter'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'path'
 import { buildConfig } from 'payload'
@@ -54,5 +56,19 @@ export default buildConfig({
     },
   }),
   sharp,
-  plugins: [payloadCloudPlugin()],
+  plugins: [
+    payloadCloudPlugin(),
+    cloudStorage({
+      collections: {
+        media: {
+          adapter: vercelBlobAdapter({
+            token: process.env.BLOB_READ_WRITE_TOKEN || '',
+            prefix: process.env.BLOB_PREFIX || 'media',
+          }),
+          // Optional: store only in Blob (skip local disk)
+          disableLocalStorage: true,
+        },
+      },
+    }),
+  ],
 })
