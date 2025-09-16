@@ -173,11 +173,22 @@ export interface Page {
   slug: string;
   layout: (
     | {
-        heading: string;
-        subheading?: string | null;
-        ctaText?: string | null;
-        ctaLink?: string | null;
-        image?: (string | null) | Media;
+        slides?:
+          | {
+              /**
+               * Optional pill text shown above the heading.
+               */
+              badge?: string | null;
+              heading: string;
+              subheading?: string | null;
+              ctaText?: string | null;
+              ctaLink?: string | null;
+              secondaryCtaText?: string | null;
+              secondaryCtaLink?: string | null;
+              image?: (string | null) | Media;
+              id?: string | null;
+            }[]
+          | null;
         id?: string | null;
         blockName?: string | null;
         blockType: 'hero';
@@ -198,6 +209,7 @@ export interface Page {
         heading?: string | null;
         quotes: {
           name: string;
+          role?: string | null;
           quote: string;
           avatar?: (string | null) | Media;
           id?: string | null;
@@ -348,11 +360,19 @@ export interface PagesSelect<T extends boolean = true> {
         hero?:
           | T
           | {
-              heading?: T;
-              subheading?: T;
-              ctaText?: T;
-              ctaLink?: T;
-              image?: T;
+              slides?:
+                | T
+                | {
+                    badge?: T;
+                    heading?: T;
+                    subheading?: T;
+                    ctaText?: T;
+                    ctaLink?: T;
+                    secondaryCtaText?: T;
+                    secondaryCtaLink?: T;
+                    image?: T;
+                    id?: T;
+                  };
               id?: T;
               blockName?: T;
             };
@@ -379,6 +399,7 @@ export interface PagesSelect<T extends boolean = true> {
                 | T
                 | {
                     name?: T;
+                    role?: T;
                     quote?: T;
                     avatar?: T;
                     id?: T;
