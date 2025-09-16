@@ -64,6 +64,8 @@ export default buildConfig({
       collections: {
         media: {
           prefix: process.env.BLOB_PREFIX || 'media',
+          // Generate absolute Blob URLs and bypass Payload access control for files
+          disablePayloadAccessControl: true,
         },
       },
     }),
