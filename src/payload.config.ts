@@ -11,8 +11,6 @@ import sharp from 'sharp'
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
-import { Header } from './globals/Header'
-import { Footer } from './globals/Footer'
 import { Theme } from './globals/Theme'
 
 const filename = fileURLToPath(import.meta.url)
@@ -26,7 +24,7 @@ export default buildConfig({
     },
   },
   collections: [Users, Media, Pages],
-  globals: [Header, Footer, Theme],
+  globals: [Theme],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   csrf: [
@@ -71,3 +69,4 @@ export default buildConfig({
     }),
   ],
 })
+
