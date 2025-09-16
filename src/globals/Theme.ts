@@ -20,6 +20,12 @@ export const Theme: GlobalConfig = {
           label: 'Accent Color (Hex)',
           admin: { placeholder: '#10B981' },
         },
+        {
+          name: 'logo',
+          type: 'upload',
+          relationTo: 'media',
+          label: 'Brand Logo',
+        },
       ],
     },
     {
@@ -36,4 +42,3 @@ export const Theme: GlobalConfig = {
     },
   ],
 }
-

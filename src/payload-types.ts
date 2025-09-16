@@ -477,6 +477,7 @@ export interface Theme {
   brand?: {
     primaryHex?: string | null;
     accentHex?: string | null;
+    logo?: (string | null) | Media;
   };
   radius?: ('none' | 'sm' | 'md' | 'lg') | null;
   updatedAt?: string | null;
@@ -492,6 +493,7 @@ export interface ThemeSelect<T extends boolean = true> {
     | {
         primaryHex?: T;
         accentHex?: T;
+        logo?: T;
       };
   radius?: T;
   updatedAt?: T;
